@@ -1,3 +1,7 @@
+#
+# this script fetches weather data from OpenWeatherMap API using a zip code
+# and sends it to a Discord channel using a Discord bot.
+#
 import os
 import requests
 from dotenv import load_dotenv
@@ -27,7 +31,7 @@ def get_weather(zip_code, country_code="us"):
         # Parse the JSON response
         data = response.json()
         
-        # Extract and return the relevant weather information
+        # Extract and return the relevant weather information as a dictionary
         return {
             "city": data["name"],
             "temp": data["main"]["temp"],

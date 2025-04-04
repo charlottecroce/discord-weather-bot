@@ -7,7 +7,7 @@ Charlotte Croce, Eugene Jiang
 
 ### Set up virtual environment
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -47,3 +47,10 @@ Get weather for a specific zip code
 ```
 !weather 05401
 ```
+
+
+## Sources
+- https://openweathermap.org/api/statistics-api
+- https://openweathermap.org/api/geocoding-api
+- https://discord.com/developers/docs/quick-start/getting-started
+- https://medium.com/@ashmak/discord-bots-101-a-step-by-step-guide-on-building-a-bot-in-python-to-monitor-your-linux-server-464abd5bd6f6

@@ -29,6 +29,8 @@ async def get_weather(ctx, zip_code=None):
     # Get weather data
     data = weather.get_weather(zip_code)
     
+    print(data)
+
     # Check if there was an error
     if "error" in data:
         await ctx.send(data["error"])
