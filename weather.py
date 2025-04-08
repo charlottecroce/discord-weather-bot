@@ -34,7 +34,13 @@ def get_weather(zip_code, country_code="us"):
         
         # Extract and return the relevant weather information as a dictionary
         return {
-            # TODO: return api data
+            "city": data["name"],
+            "temp": data["main"]["temp"],
+            "feels_like": data["main"]["feels_like"],
+            "humidity": data["main"]["humidity"],
+            "wind_speed": data["wind"]["speed"],
+            "description": data["weather"][0]["description"],
+            "icon": data["weather"][0]["icon"]
         }
     except requests.exceptions.HTTPError as e:
         # Handle HTTP errors
