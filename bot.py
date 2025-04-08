@@ -17,9 +17,44 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
+
+
+@bot.command(name='forecast')
+async def get_forcast(ctx, zip_code=None):
+    """Get forecast for a zip code or saved default"""
+
+ # Check if no zip code provided
+    if not zip_code:
+        await ctx.send("Please provide a zip code")
+        return
+    
+    # Get weather data
+    data = weather.get_forcast(zip_code)
+    
+    print(data)
+
+    # Check if there was an error
+    if "error" in data:
+        await ctx.send(data["error"])
+        return
+    
+    # Create embed for formatting
+    embed = discord.Embed(
+        title=f"Weather for {data['city']}",
+        description=f"Forecast for: {data['description']}",
+        color=0x00AAFF
+    )
+    
+    # TODO: create embed display in github
+    
+    await ctx.send(embed=embed)
+
+
+
+
 @bot.command(name='weather')
 async def get_weather(ctx, zip_code=None):
-    """Get weather for a zip code or saved default"""
+    """Get current weather for a zip code or saved default"""
     
     # Check if no zip code provided
     if not zip_code:

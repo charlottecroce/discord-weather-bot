@@ -11,9 +11,47 @@ load_dotenv()
 API_KEY = os.getenv('WEATHER_API_KEY')
 
 # Base URL for OpenWeatherMap API
-BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
+CURRENT_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
+FORECAST_BASE_URL = ""
+
 
 def get_weather(zip_code, country_code="us"):
+    """
+    Get forcast data for a given zip code
+    """
+    params = {
+        "zip": f"{zip_code},{country_code}",
+        "appid": API_KEY,
+        "units": "imperial"
+    }
+    
+    try:
+        # Make the API request
+        response = requests.get(FORECAST_BASE_URL, params=params)
+        response.raise_for_status()  # Raise exception for 4XX/5XX responses
+        
+        # Parse the JSON response
+        data = response.json()
+        
+        # Extract and return the relevant weather information as a dictionary
+        return {
+            # TODO: return api data
+        }
+    except requests.exceptions.HTTPError as e:
+        # Handle HTTP errors
+        if response.status_code == 404:
+            # 404 probably means invalid zip code
+            return {"error": "Invalid zip code"}
+        else:
+            # Other API errors
+            return {"error": f"API error: {str(e)}"}
+    except Exception as e:
+        # Catch-all for any other errors
+        return {"error": f"Error: {str(e)}"}
+
+
+
+def get_forcast(zip_code, country_code="us"):
     """
     Get weather data for a given zip code
     """
@@ -25,7 +63,7 @@ def get_weather(zip_code, country_code="us"):
     
     try:
         # Make the API request
-        response = requests.get(BASE_URL, params=params)
+        response = requests.get(CURRENT_WEATHER_BASE_URL, params=params)
         response.raise_for_status()  # Raise exception for 4XX/5XX responses
         
         # Parse the JSON response
