@@ -12,7 +12,7 @@ API_KEY = os.getenv('WEATHER_API_KEY')
 
 # Base URL for OpenWeatherMap API
 CURRENT_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather" # https://openweathermap.org/current
-FORECAST_BASE_URL = "" # https://openweathermap.org/forecast16
+FORECAST_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast/daily" # https://openweathermap.org/forecast16
 
 def get_weather(zip_code, country_code="us"):
     """
@@ -26,7 +26,7 @@ def get_weather(zip_code, country_code="us"):
     
     try:
         # Make the API request
-        response = requests.get(FORECAST_BASE_URL, params=params)
+        response = requests.get(CURRENT_WEATHER_BASE_URL, params=params)
         response.raise_for_status()  # Raise exception for 4XX/5XX responses
         
         # Parse the JSON response
@@ -57,13 +57,12 @@ def get_forecast(zip_code, country_code="us"):
     params = {
         "zip": f"{zip_code},{country_code}",
         "appid": API_KEY,
-        "units": "imperial",
         "cnt": 7
     }
     
     try:
         # Make the API request
-        response = requests.get(CURRENT_WEATHER_BASE_URL, params=params)
+        response = requests.get(FORECAST_BASE_URL, params=params)
         response.raise_for_status()  # Raise exception for 4XX/5XX responses
         
         # Parse the JSON response
@@ -90,3 +89,6 @@ def get_forecast(zip_code, country_code="us"):
     except Exception as e:
         # Catch-all for any other errors
         return {"error": f"Error: {str(e)}"}
+
+
+print(get_weather("08322"))
