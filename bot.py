@@ -29,7 +29,7 @@ async def get_forcast(ctx, zip_code=None):
         return
     
     # Get weather data
-    data = weather.get_forcast(zip_code)
+    data = weather.get_forecast(zip_code)
     
     print(data)
 

@@ -50,7 +50,7 @@ def get_weather(zip_code, country_code="us"):
 
 
 
-def get_forcast(zip_code, country_code="us"):
+def get_forecast(zip_code, country_code="us"):
     """
     Get weather data for a given zip code
     """
