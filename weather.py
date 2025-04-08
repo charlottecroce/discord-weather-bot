@@ -57,7 +57,8 @@ def get_forecast(zip_code, country_code="us"):
     params = {
         "zip": f"{zip_code},{country_code}",
         "appid": API_KEY,
-        "units": "imperial"
+        "units": "imperial",
+        "cnt": 7
     }
     
     try:
