@@ -11,9 +11,8 @@ load_dotenv()
 API_KEY = os.getenv('WEATHER_API_KEY')
 
 # Base URL for OpenWeatherMap API
-CURRENT_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
-FORECAST_BASE_URL = ""
-
+CURRENT_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather" # https://openweathermap.org/current
+FORECAST_BASE_URL = "" # https://openweathermap.org/forecast16
 
 def get_weather(zip_code, country_code="us"):
     """

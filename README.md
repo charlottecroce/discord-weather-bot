@@ -51,6 +51,7 @@ Get weather for a specific zip code
 
 ## Sources
 - https://openweathermap.org/current
+- https://openweathermap.org/forecast16
 - https://discord.com/developers/docs/quick-start/getting-started
 - https://medium.com/@ashmak/
 - https://plainenglish.io/blog/send-an-embed-with-a-discord-bot-in-pythondiscord-bots-101-a-step-by-step-guide-on-building-a-bot-in-python-to-monitor-your-linux-server-464abd5bd6f6
