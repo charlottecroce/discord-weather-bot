@@ -12,7 +12,7 @@ API_KEY = os.getenv('WEATHER_API_KEY')
 
 # Base URL for OpenWeatherMap API
 CURRENT_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather" # https://openweathermap.org/current
-FORECAST_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast/daily" # https://openweathermap.org/forecast16
+FORECAST_BASE_URL = "https://api.openweathermap.org/data/2.5/forecast" # https://openweathermap.org/forecast16
 
 def get_weather(zip_code, country_code="us"):
     """
@@ -63,6 +63,7 @@ def get_forecast(zip_code, country_code="us"):
     params = {
         "zip": f"{zip_code},{country_code}",
         "appid": API_KEY,
+        "units": "imperial",
         "cnt": 7
     }
     
@@ -74,15 +75,12 @@ def get_forecast(zip_code, country_code="us"):
         # Parse the JSON response
         data = response.json()
         
+        print(data)
+
         # Extract and return the relevant weather information as a dictionary
         return {
-            "city": data["name"],
-            "temp": data["main"]["temp"],
-            "feels_like": data["main"]["feels_like"],
-            "humidity": data["main"]["humidity"],
-            "wind_speed": data["wind"]["speed"],
-            "description": data["weather"][0]["description"],
-            "icon": data["weather"][0]["icon"]
+            null
+            # TODO: return formatted json
         }
     except requests.exceptions.HTTPError as e:
         # Handle HTTP errors
@@ -97,4 +95,4 @@ def get_forecast(zip_code, country_code="us"):
         return {"error": f"Error: {str(e)}"}
 
 
-print(get_weather("08322"))
+print(get_forecast("08322"))
