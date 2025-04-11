@@ -20,7 +20,7 @@ async def on_ready():
 
 
 @bot.command(name='forecast')
-async def get_forcast(ctx, zip_code=None):
+async def get_forecast(ctx, zip_code=None):
     """Get forecast for a zip code or saved default"""
 
  # Check if no zip code provided
