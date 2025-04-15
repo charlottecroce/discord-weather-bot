@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 API_KEY = os.getenv('WEATHER_API_KEY')
-COUNT = 2 # I don't think we're ever changing this so I'm setting it as a constant here
+COUNT = 7 # I don't think we're ever changing this so I'm setting it as a constant here
 
 # Base URL for OpenWeatherMap API
 CURRENT_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
@@ -65,7 +65,6 @@ def get_forecast(zip_code, country_code="us"):
         "zip": f"{zip_code},{country_code}",
         "appid": API_KEY,
         "cnt": COUNT,
-        #cnt set to 2 for readability, can be adjusted whenever
         "units": "imperial"
     }
 
@@ -132,8 +131,8 @@ def get_forecast(zip_code, country_code="us"):
 
 #below is used to test functions in terminal/file
 
-zipcode = input("zip code: ")
-print(get_forecast(zipcode,country_code="us"))
+#zipcode = input("zip code: ")
+#print(get_forecast(zipcode,country_code="us"))
 
 #intended formatting for forecast:
 #same as the other one, but just with the extra "day[i]" key at the start and some formatting

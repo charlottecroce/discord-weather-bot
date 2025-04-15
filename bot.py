@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import weather
+from datetime import datetime, timedelta
 
 # Load environment variables
 load_dotenv()
@@ -39,14 +40,50 @@ async def get_forecast(ctx, zip_code=None):
         return
     
     # Create embed for formatting
+    # Get city from the first day
+    city_name = data['day1']['city']
+    
     embed = discord.Embed(
-        title=f"Weather for {data['city']}",
-        description=f"Forecast for: {data['description']}",
+        title=f"7-Day Forecast for {city_name}",
+        description=f"Weekly weather forecast for {city_name} ({zip_code})",
         color=0x00AAFF
     )
     
-    # TODO: create embed display in github
+    # Day names
+    today = datetime.now()
+    weekday_names = []
+    for i in range(7):
+        day = today + timedelta(days=i)
+        weekday_names.append(day.strftime("%A"))  # Full weekday name
+
+    # Add fields for each day
+    for i in range(1, 8):
+        day_key = f'day{i}'
+        if day_key in data:
+            day_data = data[day_key]
+        
+            # Create field name with weekday name
+            field_name = weekday_names[i-1]
+        
+            # Format temperature and description
+            temp = round(day_data['temp_day'])
+            feels_like = round(day_data['feels_like_day'])
+            description = day_data['description'].capitalize()
+        
+            # Get icon for this specific day
+            icon_url = f"http://openweathermap.org/img/wn/{day_data['icon']}@2x.png"
+        
+            # Create field value with weather information and icon
+            field_value = (
+                f"**{temp}°F** (Feels like: {feels_like}°F)\n"
+                f"{description}\n"
+                f"Wind: {day_data['wind_speed']} mph | Humidity: {day_data['humidity']}%"
+            )
+        
+            # Add field to embed
+            embed.add_field(name=field_name, value=field_value, inline=True)
     
+    # Send the embed
     await ctx.send(embed=embed)
 
 
