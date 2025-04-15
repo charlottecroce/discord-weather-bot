@@ -75,11 +75,12 @@ async def get_forecast(ctx, zip_code=None):
         
             # Create field value with weather information and icon
             field_value = (
+                f"![icon]({icon_url})\n"
                 f"**{temp}°F** (Feels like: {feels_like}°F)\n"
                 f"{description}\n"
                 f"Wind: {day_data['wind_speed']} mph | Humidity: {day_data['humidity']}%"
             )
-        
+
             # Add field to embed
             embed.add_field(name=field_name, value=field_value, inline=True)
     
