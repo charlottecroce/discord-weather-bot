@@ -62,20 +62,16 @@ async def get_forecast(ctx, zip_code=None):
         if day_key in data:
             day_data = data[day_key]
         
-            # Create field name with weekday name
+            # Create field name
             field_name = weekday_names[i-1]
         
             # Format temperature and description
             temp = round(day_data['temp_day'])
             feels_like = round(day_data['feels_like_day'])
             description = day_data['description'].capitalize()
-        
-            # Get icon for this specific day
-            icon_url = f"http://openweathermap.org/img/wn/{day_data['icon']}@2x.png"
-        
-            # Create field value with weather information and icon
+                
+            # Create field with weather information
             field_value = (
-                f"![icon]({icon_url})\n"
                 f"**{temp}°F** (Feels like: {feels_like}°F)\n"
                 f"{description}\n"
                 f"Wind: {day_data['wind_speed']} mph | Humidity: {day_data['humidity']}%"
