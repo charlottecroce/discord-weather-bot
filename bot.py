@@ -69,11 +69,12 @@ async def get_forecast(ctx, zip_code=None):
             temp = round(day_data['temp_day'])
             feels_like = round(day_data['feels_like_day'])
             description = day_data['description'].capitalize()
-                
+            icon = day_data['icon']
+
             # Create field with weather information
             field_value = (
                 f"**{temp}°F** (Feels like: {feels_like}°F)\n"
-                f"{description}\n"
+                f"{icon}{description}\n"
                 f"Wind: {day_data['wind_speed']} mph | Humidity: {day_data['humidity']}%"
             )
 

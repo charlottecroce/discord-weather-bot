@@ -140,8 +140,8 @@ def get_forecast(zip_code, country_code="us"):
 
 # below is used to test functions in terminal/file
 
-zipcode = input("zip code: ")
-print(get_forecast(zipcode, country_code="us"))
+#zipcode = input("zip code: ")
+#print(get_forecast(zipcode, country_code="us"))
 
 # intended formatting for forecast:
 # same as the other one, but just with the extra "day[i]" key at the start and some formatting
